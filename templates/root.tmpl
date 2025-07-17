@@ -4,17 +4,25 @@
 
   <div class="divider"></div>
 
-  <div class="stats shadow"
-       hx-get="/widget/stat/pageviews"
-       hx-trigger="load"
-       hx-target="this"
-       hx-swap="outerHTML">{{template "stat-loader"}}</div>
+  <div class="join">
+    <div class="stats shadow"
+         hx-get="/widget/stat/pageviews"
+         hx-trigger="load"
+         hx-target="this"
+         hx-swap="outerHTML">{{template "stat-loader"}}</div>
 
-  <div class="stats shadow"
-       hx-get="/widget/stat/downloads"
-       hx-trigger="load"
-       hx-target="this"
-       hx-swap="outerHTML">{{template "stat-loader"}}</div>
+    <div class="stats shadow"
+         hx-get="/widget/stat/downloads"
+         hx-trigger="load"
+         hx-target="this"
+         hx-swap="outerHTML">{{template "stat-loader"}}</div>
+
+    <div class="stats shadow"
+         hx-get="/widget/stat/new-registers"
+         hx-trigger="load"
+         hx-target="this"
+         hx-swap="outerHTML">{{template "stat-loader"}}</div>
+  </div>
 
   <div class="divider"></div>
 
