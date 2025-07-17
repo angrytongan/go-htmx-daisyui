@@ -6,6 +6,7 @@ import (
 	"ghdui/internal/employees"
 	"ghdui/internal/pageviews"
 	"ghdui/internal/registers"
+	"ghdui/internal/users"
 	"net/http"
 	"time"
 )
@@ -34,7 +35,12 @@ func (app *Application) widgetStat(w http.ResponseWriter, r *http.Request) {
 		stat = downloads.Stat()
 
 	case "new-registers":
+		time.Sleep(750 * time.Millisecond)
 		stat = registers.Stat()
+
+	case "users":
+		time.Sleep(1500 * time.Millisecond)
+		stat = users.Stat()
 	}
 
 	pageData := map[string]any{
@@ -56,6 +62,7 @@ func (app *Application) widgetTable(w http.ResponseWriter, r *http.Request) {
 
 	switch dataset {
 	case "employees":
+		time.Sleep(1100 * time.Millisecond)
 		table = employees.Table()
 	}
 

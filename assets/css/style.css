@@ -1740,6 +1740,9 @@
       padding-block: calc(0.25rem * 1);
     }
   }
+  .text-secondary {
+    color: var(--color-secondary);
+  }
   .ordinal {
     --tw-ordinal: ordinal;
     font-variant-numeric: var(--tw-ordinal,) var(--tw-slashed-zero,) var(--tw-numeric-figure,) var(--tw-numeric-spacing,) var(--tw-numeric-fraction,);

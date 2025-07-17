@@ -2,9 +2,17 @@
   <div class="stats shadow">
     <div class="stat">
       <div class="stat-title">{{.Stat.Title}}</div>
-      <div class="stat-value">{{.Stat.Value}}</div>
-      <div class="stat-desc">{{.Stat.Description}}</div>
+      <div class="stat-value{{if .ValueClass}} {{.ValueClass}}{{end}}">{{.Stat.Value}}</div>
+      <div class="stat-desc{{if .DescxriptionClass}} {{.DescriptionClass}}{{end}}">{{.Stat.Description}}</div>
     </div>
+  </div>
+{{end}}
+
+{{define "widget-stat-loader"}}
+  <div class="stat">
+    <div class="stat-title"></div>
+    <div class="stat-value"><span class="loading loading-spinner"></span></div>
+    <div class="stat-desc"></div>
   </div>
 {{end}}
 

@@ -6,6 +6,9 @@ type Stat struct {
 	Title       string
 	Value       string
 	Description string
+
+	ValueClass       string
+	DescriptionClass string
 }
 
 // Table.
