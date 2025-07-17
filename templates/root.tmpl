@@ -2,22 +2,36 @@
   {{template "head" .}}
   {{template "nav" .}}
 
-  <div hx-get="/widget/stat/pageviews"
-       hx-trigger="load"
-       hx-target="this"
-       hx-swap="outerHTML">{{template "loader"}}</div>
+  <div class="divider"></div>
 
-  <div hx-get="/widget/stat/downloads"
+  <div class="stats shadow"
+       hx-get="/widget/stat/pageviews"
        hx-trigger="load"
        hx-target="this"
-       hx-swap="outerHTML">{{template "loader"}}</div>
+       hx-swap="outerHTML">{{template "stat-loader"}}</div>
+
+  <div class="stats shadow"
+       hx-get="/widget/stat/downloads"
+       hx-trigger="load"
+       hx-target="this"
+       hx-swap="outerHTML">{{template "stat-loader"}}</div>
+
+  <div class="divider"></div>
 
   <div hx-get="/widget/table/employees"
        hx-trigger="load"
        hx-target="this"
-       hx-swap="outerHTML">{{template "loader"}}</div>
+       hx-swap="innerHTML">{{template "loader"}}</div>
+
+  <div class="divider"></div>
 
   {{template "foot" .}}
+{{end}}
+
+{{define "stat-loader"}}
+  <div class="stat">
+    <span class="loading loading-spinner"></span>
+  </div>
 {{end}}
 
 {{define "loader"}}

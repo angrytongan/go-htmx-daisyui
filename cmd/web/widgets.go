@@ -6,6 +6,7 @@ import (
 	"ghdui/internal/employees"
 	"ghdui/internal/pageviews"
 	"net/http"
+	"time"
 )
 
 var (
@@ -19,6 +20,8 @@ func (app *Application) widgetStat(w http.ResponseWriter, r *http.Request) {
 
 		return
 	}
+
+	time.Sleep(2 * time.Second)
 
 	var stat any
 
