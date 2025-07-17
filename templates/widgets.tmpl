@@ -1,0 +1,44 @@
+{{block "widget-stat" .}}
+  <div class="stats shadow">
+    <div class="stat">
+      <div class="stat-title">{{.Stat.Title}}</div>
+      <div class="stat-value">{{.Stat.Value}}</div>
+      <div class="stat-desc">{{.Stat.Description}}</div>
+    </div>
+  </div>
+{{end}}
+
+{{block "widget-table" .}}
+  <div class="overflow-x-auto">
+    <table class="table table-xs">
+      {{if gt (len .Table.Head) 0}}
+        <thead>
+          <tr>
+            {{range $i, $v := .Table.Head}}
+              <td>{{$v}}</td>
+            {{end}}
+          </tr>
+        </thead>
+      {{end}}
+      <tbody>
+        {{range $i, $v := .Table.Body}}
+          <tr>
+            {{range $j, $u := .}}
+              <td>{{.}}</td>
+            {{end}}
+          </tr>
+        {{end}}
+      </body>
+      {{if gt (len .Table.Foot) 0}}
+        <tfoot>
+          <tr>
+            {{range $i, $v := .Table.Foot}}
+              <td>{{$v}}</td>
+            {{end}}
+          </tr>
+        </tfoot>
+      {{end}}
+
+    </table>
+  </div>
+{{end}}

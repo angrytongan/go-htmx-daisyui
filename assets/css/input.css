@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+}
+
+body {
+  display: grid;
+  grid-template-columns: max(10em, 10%) 1fr;
+}
