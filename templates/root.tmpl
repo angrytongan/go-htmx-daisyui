@@ -32,13 +32,9 @@
   <div hx-get="/widget/table/employees"
        hx-trigger="load"
        hx-target="this"
-       hx-swap="innerHTML">{{template "loader"}}</div>
+       hx-swap="innerHTML">{{template "widget-table-loader"}}</div>
 
   <div class="divider"></div>
 
   {{template "foot" .}}
-{{end}}
-
-{{define "loader"}}
-  <span class="loading loading-spinner"></span>
 {{end}}
