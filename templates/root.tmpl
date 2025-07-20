@@ -2,29 +2,51 @@
   {{template "head" .}}
   {{template "nav" .}}
 
+  {{template "root" .}}
+
+  {{template "foot" .}}
+{{end}}
+
+{{block "root" .}}
+  {{/* server time */}}
+  <div hx-get="/widget/server-time"
+       hx-trigger="load"
+       hx-target="this"
+       hx-swap="outerHTML">{{template "widget-server-time-loader"}}</div>
+
+  <div class="divider"></div>
+
+  {{/* Statistics boxes. */}}
   {{range $v := .NumChunks}}
-    <div class="join">
-      <div hx-get="/widget/stat/pageviews?_={{$v}}"
+    <div class="join w-full">
+      <div class="w-1/4"
+           hx-get="/widget/stat/pageviews?_={{$v}}"
            hx-trigger="load"
            hx-target="this"
            hx-swap="outerHTML">{{template "widget-stat-loader"}}</div>
 
-      <div hx-get="/widget/stat/downloads?_={{$v}}"
+      <div class="w-1/4"
+           hx-get="/widget/stat/downloads?_={{$v}}"
            hx-trigger="load"
            hx-target="this"
            hx-swap="outerHTML">{{template "widget-stat-loader"}}</div>
 
-      <div hx-get="/widget/stat/new-registers?_={{$v}}"
+      <div class="w-1/4"
+           hx-get="/widget/stat/new-registers?_={{$v}}"
            hx-trigger="load"
            hx-target="this"
            hx-swap="outerHTML">{{template "widget-stat-loader"}}</div>
 
-      <div hx-get="/widget/stat/users?_={{$v}}"
+      <div class="w-1/4"
+           hx-get="/widget/stat/users?_={{$v}}"
            hx-trigger="load"
            hx-target="this"
            hx-swap="outerHTML">{{template "widget-stat-loader"}}</div>
     </div>
 
+    <div class="divider"></div>
+
+    {{/* Employee table. */}}
     <div hx-get="/widget/table/employees?_={{$v}}"
          hx-trigger="load"
          hx-target="this"
@@ -32,6 +54,4 @@
 
     <div class="divider"></div>
   {{end}}
-
-  {{template "foot" .}}
 {{end}}

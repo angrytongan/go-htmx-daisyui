@@ -7,7 +7,6 @@ import (
 	"ghdui/internal/pageviews"
 	"ghdui/internal/registers"
 	"ghdui/internal/users"
-	"math/rand/v2"
 	"net/http"
 	"time"
 )
@@ -25,8 +24,6 @@ func (app *Application) widgetStat(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var stat any
-
-	time.Sleep(time.Duration(rand.IntN(500)) * time.Millisecond)
 
 	switch dataset {
 	case "pageviews":
@@ -61,7 +58,6 @@ func (app *Application) widgetTable(w http.ResponseWriter, r *http.Request) {
 
 	switch dataset {
 	case "employees":
-		time.Sleep(1100 * time.Millisecond)
 		table = employees.Table()
 	}
 
@@ -70,4 +66,13 @@ func (app *Application) widgetTable(w http.ResponseWriter, r *http.Request) {
 	}
 
 	app.render(w, r, "widget-table", pageData, http.StatusOK)
+}
+
+func (app *Application) widgetServerTime(w http.ResponseWriter, r *http.Request) {
+	layout := "2006-01-02 15:04"
+	pageData := map[string]any{
+		"Now": time.Now().Format(layout),
+	}
+
+	app.render(w, r, "widget-server-time", pageData, http.StatusOK)
 }

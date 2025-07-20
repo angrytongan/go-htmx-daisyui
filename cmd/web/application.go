@@ -42,6 +42,10 @@ func (app *Application) render(w http.ResponseWriter,
 ) {
 	var b bytes.Buffer
 
+	if r.Header.Get("Hx-Request") != "true" {
+		block += "-page"
+	}
+
 	err := app.tpl.ExecuteTemplate(&b, block, pageData)
 	if err != nil {
 		app.serverError(
