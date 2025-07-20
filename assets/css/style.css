@@ -1883,6 +1883,9 @@
   .min-w-1\/4 {
     min-width: calc(1/4 * 100%);
   }
+  .min-w-1\/5 {
+    min-width: calc(1/5 * 100%);
+  }
   .flex-1 {
     flex: 1;
   }
