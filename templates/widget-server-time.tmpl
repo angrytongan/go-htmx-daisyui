@@ -1,0 +1,19 @@
+{{block "widget-server-time" .}}
+  <div class="stat">
+    <div class="stat-title">Server time</div>
+    <div class="stat-value"
+         hx-get="/widget/server-time"
+         hx-trigger="load delay:1m"
+         hx-target="closest div.stat"
+         hx-swap="outerHTML">{{.Now}}</div>
+    <div class="stat-desc"></div>
+  </div>
+{{end}}
+
+{{define "widget-server-time-loader"}}
+  <div class="stat">
+    <div class="stat-title">Server time</div>
+    <div class="stat-value"><div class="skeleton w-64 h-8"></div></div>
+    <div class="stat-desc"></div>
+  </div>
+{{end}}

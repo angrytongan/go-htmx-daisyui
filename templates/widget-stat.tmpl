@@ -1,0 +1,18 @@
+{{block "widget-stat" .}}
+  <div class="stat shadow min-w-1/4">
+    <div class="stat">
+      <div class="stat-title">{{.Stat.Title}}</div>
+      <div class="stat-value{{if .ValueClass}} {{.ValueClass}}{{end}}">{{.Stat.Value}}</div>
+      <div class="stat-desc{{if .DescxriptionClass}} {{.DescriptionClass}}{{end}}">{{.Stat.Description}}</div>
+    </div>
+  </div>
+{{end}}
+
+{{define "widget-stat-loader"}}
+  <div class="stat shadow min-w-1/4">
+    <div class="stat-title"><div class="skeleton w-32 h-6 mt-1"></div></div>
+    <div class="stat-value"><div class="skeleton w-32 h-12 mt-1"></div></div>
+    <div class="stat-desc"><div class="skeleton w-32 h-6 my-1"></div></div>
+  </div>
+{{end}}
+
