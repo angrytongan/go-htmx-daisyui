@@ -33,5 +33,6 @@ func (app *Application) setRoutes(mux *chi.Mux) {
 
 		r.Get("/widget/stat/{dataset}", app.widgetStat)
 		r.Get("/widget/table/{dataset}", app.widgetTable)
+		r.Get("/widget/timeline", app.widgetTimeline)
 	})
 }

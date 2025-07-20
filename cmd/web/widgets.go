@@ -76,3 +76,19 @@ func (app *Application) widgetServerTime(w http.ResponseWriter, r *http.Request)
 
 	app.render(w, r, "widget-server-time", pageData, http.StatusOK)
 }
+
+func (app *Application) widgetTimeline(w http.ResponseWriter, r *http.Request) {
+	items := map[string]string{
+		"1984": "First Macintosh computer",
+		"1998": "iMac",
+		"2001": "iPod",
+		"2007": "iPhone",
+		"2015": "Apple Watch",
+	}
+
+	pageData := map[string]any{
+		"Items": items,
+	}
+
+	app.render(w, r, "widget-timeline", pageData, http.StatusOK)
+}

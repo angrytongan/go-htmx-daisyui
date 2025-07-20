@@ -53,5 +53,13 @@
          hx-swap="innerHTML">{{template "widget-table-loader"}}</div>
 
     <div class="divider"></div>
+
+    {{/* Timeline. */}}
+    <div hx-get="/widget/timeline?_={{$v}}"
+         hx-trigger="load"
+         hx-target="this"
+         hx-swap="innerHTML">{{template "widget-timeline-loader"}}</div>
+
+    <div class="divider"></div>
   {{end}}
 {{end}}
