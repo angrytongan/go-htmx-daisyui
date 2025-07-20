@@ -7,6 +7,7 @@ import (
 	"ghdui/internal/pageviews"
 	"ghdui/internal/registers"
 	"ghdui/internal/users"
+	"math/rand/v2"
 	"net/http"
 	"time"
 )
@@ -25,21 +26,19 @@ func (app *Application) widgetStat(w http.ResponseWriter, r *http.Request) {
 
 	var stat any
 
+	time.Sleep(time.Duration(rand.IntN(500)) * time.Millisecond)
+
 	switch dataset {
 	case "pageviews":
-		time.Sleep(500 * time.Millisecond)
 		stat = pageviews.Stat()
 
 	case "downloads":
-		time.Sleep(2 * time.Second)
 		stat = downloads.Stat()
 
 	case "new-registers":
-		time.Sleep(750 * time.Millisecond)
 		stat = registers.Stat()
 
 	case "users":
-		time.Sleep(1500 * time.Millisecond)
 		stat = users.Stat()
 	}
 

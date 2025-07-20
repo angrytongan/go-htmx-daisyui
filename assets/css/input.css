@@ -1,9 +1,4 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  /*themes: light --default;*/
-}
-
-body {
-  display: grid;
-  grid-template-columns: max(10em, 10%) 1fr;
+  /* themes: light --default; */
 }

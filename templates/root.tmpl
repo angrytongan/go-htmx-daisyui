@@ -2,39 +2,36 @@
   {{template "head" .}}
   {{template "nav" .}}
 
-  <div class="divider"></div>
+  {{range $v := .NumChunks}}
+    <div class="join">
+      <div hx-get="/widget/stat/pageviews?_={{$v}}"
+           hx-trigger="load"
+           hx-target="this"
+           hx-swap="outerHTML">{{template "widget-stat-loader"}}</div>
 
-  <div class="join">
-    <div hx-get="/widget/stat/pageviews"
+      <div hx-get="/widget/stat/downloads?_={{$v}}"
+           hx-trigger="load"
+           hx-target="this"
+           hx-swap="outerHTML">{{template "widget-stat-loader"}}</div>
+
+      <div hx-get="/widget/stat/new-registers?_={{$v}}"
+           hx-trigger="load"
+           hx-target="this"
+           hx-swap="outerHTML">{{template "widget-stat-loader"}}</div>
+
+      <div hx-get="/widget/stat/users?_={{$v}}"
+           hx-trigger="load"
+           hx-target="this"
+           hx-swap="outerHTML">{{template "widget-stat-loader"}}</div>
+    </div>
+
+    <div hx-get="/widget/table/employees?_={{$v}}"
          hx-trigger="load"
          hx-target="this"
-         hx-swap="outerHTML">{{template "widget-stat-loader"}}</div>
+         hx-swap="innerHTML">{{template "widget-table-loader"}}</div>
 
-    <div hx-get="/widget/stat/downloads"
-         hx-trigger="load"
-         hx-target="this"
-         hx-swap="outerHTML">{{template "widget-stat-loader"}}</div>
-
-    <div hx-get="/widget/stat/new-registers"
-         hx-trigger="load"
-         hx-target="this"
-         hx-swap="outerHTML">{{template "widget-stat-loader"}}</div>
-
-    <div hx-get="/widget/stat/users"
-         hx-trigger="load"
-         hx-target="this"
-         hx-swap="outerHTML">{{template "widget-stat-loader"}}</div>
-
-  </div>
-
-  <div class="divider"></div>
-
-  <div hx-get="/widget/table/employees"
-       hx-trigger="load"
-       hx-target="this"
-       hx-swap="innerHTML">{{template "widget-table-loader"}}</div>
-
-  <div class="divider"></div>
+    <div class="divider"></div>
+  {{end}}
 
   {{template "foot" .}}
 {{end}}
