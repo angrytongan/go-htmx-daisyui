@@ -23,9 +23,11 @@ func delayWidgets(next http.Handler) http.Handler {
 func (app *Application) setRoutes(mux *chi.Mux) {
 	// Pages.
 	mux.Get("/", app.root)
+	mux.Get("/template-fragments", app.templateFragments)
 
 	// Widgets.
 	mux.Get("/widget/server-time", app.widgetServerTime)
+	mux.Get("/widget/button-only", app.widgetButtonOnly)
 
 	// Widgets that we delay.
 	mux.Group(func(r chi.Router) {
@@ -36,4 +38,8 @@ func (app *Application) setRoutes(mux *chi.Mux) {
 		r.Get("/widget/timeline", app.widgetTimeline)
 		r.Get("/widget/graph-random", app.widgetGraphRandom)
 	})
+
+	// Things we change.
+	mux.Patch("/people/archive", app.peopleArchive)
+	mux.Patch("/people/unarchive", app.peopleUnarchive)
 }

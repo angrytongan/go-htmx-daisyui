@@ -1,0 +1,62 @@
+{{block "template-fragments-page" .}}
+  {{template "head" .}}
+  {{template "nav" .}}
+
+  {{template "template-fragments" .}}
+
+  {{template "foot" .}}
+{{end}}
+
+{{block "template-fragments" .}}
+  <p>template fragments</p>
+
+  {{block "button-only" .}}
+    <button class="btn btn-primary"
+            hx-get="/widget/button-only?value={{.Value}}"
+            hx-trigger="click"
+            hx-target="this"
+            hx-swap="outerHTML">value: {{.Value}}</button>
+  {{end}}
+
+  <div class="divider"></div>
+
+  <table class="table table-xs">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Archive status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    {{range .People}}
+      <tr>
+        <td>{{.Name}}</td>
+        <td>{{.Age}}</td>
+        <td>
+          {{block "people-do-archive" .}}
+            {{if .Archived}}
+              <button class="btn btn-primary"
+                      hx-trigger="click"
+                      hx-patch="/people/unarchive"
+                      hx-vals='{"name":"{{.Name}}"}'
+                      hx-swap="outerHTML"
+                      >Unarchive</button>
+            {{else}}
+              <button class="btn btn-primary"
+                      hx-trigger="click"
+                      hx-patch="/people/archive"
+                      hx-vals='{"name":"{{.Name}}"}'
+                      hx-swap="outerHTML"
+                      >Archive</button>
+            {{end}}
+          {{end}}
+        </td>
+      </tr>
+    {{end}}
+    </tbody>
+  </table>
+
+
+{{end}}

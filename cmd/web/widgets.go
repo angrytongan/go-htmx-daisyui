@@ -8,6 +8,7 @@ import (
 	"ghdui/internal/registers"
 	"ghdui/internal/users"
 	"net/http"
+	"strconv"
 	"time"
 )
 
@@ -91,4 +92,14 @@ func (app *Application) widgetTimeline(w http.ResponseWriter, r *http.Request) {
 	}
 
 	app.render(w, r, "widget-timeline", pageData, http.StatusOK)
+}
+
+func (app *Application) widgetButtonOnly(w http.ResponseWriter, r *http.Request) {
+	value, _ := strconv.Atoi(r.URL.Query().Get("value"))
+
+	pageData := map[string]any{
+		"Value": value + 1,
+	}
+
+	app.render(w, r, "button-only", pageData, http.StatusOK)
 }
