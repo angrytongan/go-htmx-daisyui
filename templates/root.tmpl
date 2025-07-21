@@ -16,6 +16,13 @@
 
   <div class="divider"></div>
 
+  <div hx-get="/widget/graph-random"
+       hx-trigger="load"
+       hx-target="this"
+       hx-swap="outerHTML">{{template "widget-graph-random-loader"}}</div>
+
+  <div class="divider"></div>
+
   {{/* Statistics boxes. */}}
   {{range $v := .NumChunks}}
     <div class="join w-full">

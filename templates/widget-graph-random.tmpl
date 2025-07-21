@@ -1,0 +1,14 @@
+{{block "widget-graph-random" .}}
+  <div class="grid grid-cols-3">
+    {{range .Graphs}}
+      <div>
+        {{.Element}}
+        {{.Script}}
+      </div>
+    {{end}}
+  </div>
+{{end}}
+
+{{block "widget-graph-random-loader" .}}
+  <div class="skeleton w-full h-48 py-1"></div>
+{{end}}
