@@ -47,18 +47,14 @@ func All() []Person {
 	return people
 }
 
-func Archive(name string) {
+// ArchiveToggle toggles the archive status of a Person, and returns the new
+// status.
+func ArchiveToggle(name string) bool {
 	idx := slices.IndexFunc(people, func(p Person) bool {
 		return p.Name == name
 	})
 
-	people[idx].Archived = true
-}
+	people[idx].Archived = !people[idx].Archived
 
-func Unarchive(name string) {
-	idx := slices.IndexFunc(people, func(p Person) bool {
-		return p.Name == name
-	})
-
-	people[idx].Archived = false
+	return people[idx].Archived
 }

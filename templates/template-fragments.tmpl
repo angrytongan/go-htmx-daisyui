@@ -36,27 +36,18 @@
         <td>{{.Age}}</td>
         <td>
           {{block "people-do-archive" .}}
-            {{if .Archived}}
-              <button class="btn btn-primary"
-                      hx-trigger="click"
-                      hx-patch="/people/unarchive"
-                      hx-vals='{"name":"{{.Name}}"}'
-                      hx-swap="outerHTML"
-                      >Unarchive</button>
-            {{else}}
-              <button class="btn btn-primary"
-                      hx-trigger="click"
-                      hx-patch="/people/archive"
-                      hx-vals='{"name":"{{.Name}}"}'
-                      hx-swap="outerHTML"
-                      >Archive</button>
-            {{end}}
+            <button class="btn btn-primary"
+                    hx-trigger="click"
+                    hx-patch="/people/archive-toggle"
+                    hx-vals='{"name":"{{.Name}}"}'
+                    hx-swap="outerHTML"
+                    hx-disabled-elt="this"
+                    >{{if .Archived}}Unarchive{{else}}Archive{{end}}
+            </button>
           {{end}}
         </td>
       </tr>
     {{end}}
     </tbody>
   </table>
-
-
 {{end}}

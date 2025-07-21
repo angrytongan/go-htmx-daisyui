@@ -37,9 +37,8 @@ func (app *Application) setRoutes(mux *chi.Mux) {
 		r.Get("/widget/table/{dataset}", app.widgetTable)
 		r.Get("/widget/timeline", app.widgetTimeline)
 		r.Get("/widget/graph-random", app.widgetGraphRandom)
-	})
 
-	// Things we change.
-	mux.Patch("/people/archive", app.peopleArchive)
-	mux.Patch("/people/unarchive", app.peopleUnarchive)
+		// Things we change.
+		r.Patch("/people/archive-toggle", app.peopleArchiveToggle)
+	})
 }
