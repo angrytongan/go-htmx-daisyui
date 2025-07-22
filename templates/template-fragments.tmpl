@@ -31,22 +31,33 @@
 
     <tbody>
     {{range .People}}
-      <tr>
-        <td>{{.Name}}</td>
-        <td>{{.Age}}</td>
-        <td>
-          {{block "people-do-archive" .}}
-            <button class="btn btn-primary"
-                    hx-trigger="click"
-                    hx-patch="/people/archive-toggle"
-                    hx-vals='{"name":"{{.Name}}"}'
-                    hx-swap="outerHTML"
-                    hx-disabled-elt="this"
-                    >{{if .Archived}}Unarchive{{else}}Archive{{end}}
-            </button>
+      {{block "people-do-archive" .}}
+        <tr>
+          {{if .Archived}}
+            <td><strike>{{.Name}}</strike></td>
+            <td><strike>{{.Age}}</strike></td>
+            <td><button class="btn btn-secondary"
+                        hx-trigger="click"
+                        hx-patch="/people/archive-toggle"
+                        hx-vals='{"name":"{{.Name}}"}'
+                        hx-swap="outerHTML"
+                        hx-target="closest tr"
+                        hx-disabled-elt="this">Unarchive</button>
+            </td>
+          {{else}}
+            <td>{{.Name}}</td>
+            <td>{{.Age}}</td>
+            <td><button class="btn btn-primary"
+                        hx-trigger="click"
+                        hx-patch="/people/archive-toggle"
+                        hx-vals='{"name":"{{.Name}}"}'
+                        hx-swap="outerHTML"
+                        hx-target="closest tr"
+                        hx-disabled-elt="this">Archive</button>
+            </td>
           {{end}}
-        </td>
-      </tr>
+        </tr>
+      {{end}}
     {{end}}
     </tbody>
   </table>

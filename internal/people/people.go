@@ -47,6 +47,14 @@ func All() []Person {
 	return people
 }
 
+func Find(name string) Person {
+	idx := slices.IndexFunc(people, func(p Person) bool {
+		return p.Name == name
+	})
+
+	return people[idx]
+}
+
 // ArchiveToggle toggles the archive status of a Person, and returns the new
 // status.
 func ArchiveToggle(name string) bool {
