@@ -1,5 +1,5 @@
 {{block "widget-map" .}}
-  <div id="map-{{.ID}}" class="w-auto h-48"></div>
+  <div id="map-{{.ID}}" class="w-auto h-56"></div>
 
   <script>
     var map_{{.ID}} = L.map('map-{{.ID}}');
@@ -13,5 +13,5 @@
 {{end}}
 
 {{block "widget-map-loader" .}}
-  <div class="skeleton w-full h-48 py-1"></div>
+  <div class="skeleton w-full h-56 py-1"></div>
 {{end}}
