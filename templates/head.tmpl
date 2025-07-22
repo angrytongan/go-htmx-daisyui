@@ -9,8 +9,11 @@
 
     <script type="text/javascript" src="/js/htmx-ext-sse.min.js"></script>
     <script type="text/javascript" src="/js/htmx-ext-response-targets.min.js"></script>
+
+    <meta name="htmx-config" content='{"historyCacheSize": 0,"refreshOnHistoryMiss": true}'>
   </head>
 
-  <body hx-ext="sse,response-targets"
+  <body hx-history="false"
+        hx-ext="sse,response-targets"
         class="min-h-screen flex">
 {{end}}
