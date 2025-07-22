@@ -12,12 +12,24 @@ const (
 	maxMilliseconds = 2000
 )
 
+/*
 func delayWidgets(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		time.Sleep(time.Duration(rand.IntN(maxMilliseconds)) * time.Millisecond)
 
 		next.ServeHTTP(w, r)
 	})
+}
+*/
+
+func delayWidgets(ms int) func(http.Handler) http.Handler {
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			time.Sleep(time.Duration(rand.IntN(ms)) * time.Millisecond)
+
+			next.ServeHTTP(w, r)
+		})
+	}
 }
 
 func (app *Application) setRoutes(mux *chi.Mux) {
@@ -31,7 +43,7 @@ func (app *Application) setRoutes(mux *chi.Mux) {
 
 	// Widgets that we delay.
 	mux.Group(func(r chi.Router) {
-		r.Use(delayWidgets)
+		r.Use(delayWidgets(maxMilliseconds))
 
 		r.Get("/widget/stat/{dataset}", app.widgetStat)
 		r.Get("/widget/table/{dataset}", app.widgetTable)
