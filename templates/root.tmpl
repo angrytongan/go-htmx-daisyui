@@ -53,6 +53,13 @@
 
     <div class="divider"></div>
 
+    <div hx-get="/widget/map?_={{$v}}"
+         hx-trigger="load"
+         hx-target="this"
+         hx-swap="outerHTML">{{template "widget-map-loader"}}</div>
+
+    <div class="divider"></div>
+
     {{/* Employee table. */}}
     <div hx-get="/widget/table/employees?_={{$v}}"
          hx-trigger="load"

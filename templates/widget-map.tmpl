@@ -1,0 +1,17 @@
+{{block "widget-map" .}}
+  <div id="map-{{.ID}}" class="w-auto h-48"></div>
+
+  <script>
+    var map_{{.ID}} = L.map('map-{{.ID}}');
+
+    map_{{.ID}}.setView([-26.65, 153.06], 10);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map_{{.ID}})
+  </script>
+{{end}}
+
+{{block "widget-map-loader" .}}
+  <div class="skeleton w-full h-48 py-1"></div>
+{{end}}

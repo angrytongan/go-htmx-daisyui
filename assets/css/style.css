@@ -14,7 +14,6 @@
     --text-lg--line-height: calc(1.75 / 1.125);
     --font-weight-bold: 700;
     --ease-in: cubic-bezier(0.4, 0, 1, 1);
-    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
@@ -1958,11 +1957,17 @@
   .h-48 {
     height: calc(var(--spacing) * 48);
   }
+  .h-96 {
+    height: calc(var(--spacing) * 96);
+  }
   .h-full {
     height: 100%;
   }
   .min-h-screen {
     min-height: 100vh;
+  }
+  .w-1\/2 {
+    width: calc(1/2 * 100%);
   }
   .w-5 {
     width: calc(var(--spacing) * 5);
@@ -1975,6 +1980,9 @@
   }
   .w-64 {
     width: calc(var(--spacing) * 64);
+  }
+  .w-auto {
+    width: auto;
   }
   .w-full {
     width: 100%;
