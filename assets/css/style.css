@@ -1455,6 +1455,42 @@
   .static {
     position: static;
   }
+  .-top-1 {
+    top: calc(var(--spacing) * -1);
+  }
+  .-top-2 {
+    top: calc(var(--spacing) * -2);
+  }
+  .-top-3 {
+    top: calc(var(--spacing) * -3);
+  }
+  .-top-4 {
+    top: calc(var(--spacing) * -4);
+  }
+  .-top-5 {
+    top: calc(var(--spacing) * -5);
+  }
+  .top-1 {
+    top: calc(var(--spacing) * 1);
+  }
+  .top-2 {
+    top: calc(var(--spacing) * 2);
+  }
+  .top-5 {
+    top: calc(var(--spacing) * 5);
+  }
+  .-right-1 {
+    right: calc(var(--spacing) * -1);
+  }
+  .-right-2 {
+    right: calc(var(--spacing) * -2);
+  }
+  .-right-4 {
+    right: calc(var(--spacing) * -4);
+  }
+  .-right-5 {
+    right: calc(var(--spacing) * -5);
+  }
   .textarea {
     border: var(--border) solid #0000;
     min-height: calc(0.25rem * 20);
@@ -1875,6 +1911,26 @@
       box-shadow: 0 2px 3px -1px color-mix(in oklab, currentColor calc(var(--depth) * 100%), #0000);
     }
   }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(0.25rem * 2);
+    border-radius: var(--radius-selector);
+    vertical-align: middle;
+    color: var(--badge-fg);
+    border: var(--border) solid var(--badge-color, var(--color-base-200));
+    font-size: 0.875rem;
+    width: fit-content;
+    padding-inline: calc(0.25rem * 3 - var(--border));
+    background-size: auto, calc(var(--noise) * 100%);
+    background-image: none, var(--fx-noise);
+    background-color: var(--badge-bg);
+    --badge-bg: var(--badge-color, var(--color-base-100));
+    --badge-fg: var(--color-base-content);
+    --size: calc(var(--size-selector, 0.25rem) * 6);
+    height: var(--size);
+  }
   .stat {
     display: inline-grid;
     width: 100%;
@@ -1969,6 +2025,22 @@
   }
   .table {
     display: table;
+  }
+  .size-4 {
+    width: calc(var(--spacing) * 4);
+    height: calc(var(--spacing) * 4);
+  }
+  .size-8 {
+    width: calc(var(--spacing) * 8);
+    height: calc(var(--spacing) * 8);
+  }
+  .size-14 {
+    width: calc(var(--spacing) * 14);
+    height: calc(var(--spacing) * 14);
+  }
+  .size-32 {
+    width: calc(var(--spacing) * 32);
+    height: calc(var(--spacing) * 32);
   }
   .h-4 {
     height: calc(var(--spacing) * 4);
@@ -2127,6 +2199,11 @@
       padding-block: calc(0.25rem * 1);
     }
   }
+  .badge-sm {
+    --size: calc(var(--size-selector, 0.25rem) * 5);
+    font-size: 0.75rem;
+    padding-inline: calc(0.25rem * 2.5 - var(--border));
+  }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
   }
@@ -2213,6 +2290,10 @@
     --fontsize: 0.75rem;
     --btn-p: 0.75rem;
     --size: calc(var(--size-field, 0.25rem) * 8);
+  }
+  .badge-secondary {
+    --badge-color: var(--color-secondary);
+    --badge-fg: var(--color-secondary-content);
   }
   .btn-primary {
     --btn-color: var(--color-primary);

@@ -1,0 +1,29 @@
+{{block "badges-page" .}}
+  {{template "head" .}}
+  {{template "nav" .}}
+
+  {{template "badges" .}}
+
+  {{template "foot" .}}
+{{end}}
+
+{{block "badges" .}}
+  <button class="btn btn-primary">button</button>
+
+  <button class="btn btn-primary">button {{template "badge"}}</button>
+
+  <button class="btn btn-primary">{{template "icon-settings-theme"}}{{template "badge"}}</button>
+
+  <button class="btn btn-primary relative">
+    {{template "icon-settings-theme"}}
+    {{template "badge-offset"}}
+  </button>
+{{end}}
+
+{{define "badge"}}
+  <div class="badge badge-sm badge-secondary">with badge</div>
+{{end}}
+
+{{define "badge-offset"}}
+  <div class="badge badge-sm badge-secondary absolute -top-3 -right-4">&plus;99</div>
+{{end}}
