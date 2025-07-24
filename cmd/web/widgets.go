@@ -112,3 +112,7 @@ func (app *Application) widgetMap(w http.ResponseWriter, r *http.Request) {
 
 	app.render(w, r, "widget-map", pageData, http.StatusOK)
 }
+
+func (app *Application) widgetRadialGraphs(w http.ResponseWriter, r *http.Request) {
+	app.render(w, r, "widget-radial-graphs", nil, http.StatusOK)
+}
