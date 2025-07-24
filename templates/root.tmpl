@@ -8,8 +8,6 @@
 {{end}}
 
 {{block "root" .}}
-  {{template "widget-theme-toggle"}}
-
   {{/* server time */}}
   <div hx-get="/widget/server-time"
        hx-trigger="load"

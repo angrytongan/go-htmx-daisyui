@@ -54,5 +54,6 @@ func (app *Application) setRoutes(mux *chi.Mux) {
 
 		// Things we change.
 		r.Patch("/people/archive-toggle", app.peopleArchiveToggle)
+		mux.Post("/theme/toggle", app.themeToggle)
 	})
 }

@@ -13,14 +13,16 @@ const (
 )
 
 type Application struct {
-	tpl *template.Template
+	tpl      *template.Template
+	darkMode bool
 }
 
 func newApplication() *Application {
 	tpl := template.Must(template.ParseGlob("./templates/*.tmpl"))
 
 	return &Application{
-		tpl: tpl,
+		tpl:      tpl,
+		darkMode: false,
 	}
 }
 
@@ -42,8 +44,16 @@ func (app *Application) render(w http.ResponseWriter,
 ) {
 	var b bytes.Buffer
 
+	// Render a full page if we didn't get a htmx request.
 	if r.Header.Get("Hx-Request") != "true" {
 		block += "-page"
+
+		// Setup non-specific page template data here.
+		if pageData == nil {
+			pageData = map[string]any{}
+		}
+
+		pageData["DarkMode"] = app.darkMode
 	}
 
 	err := app.tpl.ExecuteTemplate(&b, block, pageData)
