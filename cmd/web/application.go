@@ -53,6 +53,14 @@ func (app *Application) render(w http.ResponseWriter,
 			pageData = map[string]any{}
 		}
 
+		pageData["NavLinks"] = []struct {
+			Label string
+			Href  string
+		}{
+			{Label: "root", Href: "/"},
+			{Label: "fragments", Href: "/template-fragments"},
+			{Label: "icons", Href: "/icons"},
+		}
 		pageData["DarkMode"] = app.darkMode
 	}
 
