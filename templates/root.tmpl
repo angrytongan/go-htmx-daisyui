@@ -16,15 +16,20 @@
 
   <div class="divider"></div>
 
-  <div hx-get="/widget/graph-random"
-       hx-trigger="load"
-       hx-target="this"
-       hx-swap="outerHTML">{{template "widget-graph-random-loader"}}</div>
-
-  <div class="divider"></div>
-
-  {{/* Statistics boxes. */}}
   {{range $v := .NumChunks}}
+    {{/* Graphs .*/}}
+    <div hx-get="/widget/graph-random"
+         hx-trigger="load"
+         hx-target="this"
+         hx-swap="outerHTML">{{template "widget-graph-random-loader"}}</div>
+
+    {{/* Radial progress */}}
+    <div hx-get="/widget/radial-graphs"
+         hx-trigger="load"
+         hx-target="this"
+         hx-swap="outerHTML">{{template "widget-radial-graphs-loader"}}</div>
+
+    {{/* Statistics boxes. */}}
     <div class="join w-full">
       <div hx-get="/widget/stat/pageviews?_={{$v}}"
            hx-trigger="load"
@@ -49,6 +54,7 @@
 
     <div class="divider"></div>
 
+    {{/* Maps. */}}
     <div class="grid grid-cols-3 gap-4">
       {{range $u := 3}}
         <div hx-get="/widget/map?_={{$v}}{{$u}}"
