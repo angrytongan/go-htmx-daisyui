@@ -9,18 +9,14 @@
     </div>
     <nav class="menu p-4">
       <ul class="space-y-2">
+        {{range .NavLinks}}
         <li><a class="btn btn-ghost justify-start w-full"
-               href="/"
-               hx-get="/"
+               href="{{.Href}}"
+               hx-get="{{.Href}}"
                hx-target="#main"
                hx-push-url="true"
-               hx-swap="innerHTML">root</a></li>
-        <li><a class="btn btn-ghost justify-start w-full"
-               href="/template-fragments"
-               hx-get="/template-fragments"
-               hx-target="#main"
-               hx-push-url="true"
-               hx-swap="innerHTML">fragments</a></li>
+               hx-swap="innerHTML">{{.Label}}</a></li>
+        {{end}}
         <li>{{template "widget-theme-toggle" .}}</li>
       </ul>
     </nav>
