@@ -60,6 +60,7 @@ func (app *Application) render(w http.ResponseWriter,
 			{Label: "root", Href: "/"},
 			{Label: "fragments", Href: "/template-fragments"},
 			{Label: "icons", Href: "/icons"},
+			{Label: "badges", Href: "/badges"},
 		}
 		pageData["DarkMode"] = app.darkMode
 	}
