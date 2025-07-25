@@ -105,12 +105,12 @@ func (app *Application) widgetButtonOnly(w http.ResponseWriter, r *http.Request)
 	app.render(w, r, "button-only", pageData, http.StatusOK)
 }
 
-func (app *Application) widgetMap(w http.ResponseWriter, r *http.Request) {
+func (app *Application) widgetLeaflet(w http.ResponseWriter, r *http.Request) {
 	pageData := map[string]any{
 		"ID": template.JS(strconv.FormatInt(time.Now().UnixMilli(), 10)),
 	}
 
-	app.render(w, r, "widget-map", pageData, http.StatusOK)
+	app.render(w, r, "widget-leaflet", pageData, http.StatusOK)
 }
 
 func (app *Application) widgetRadialGraphs(w http.ResponseWriter, r *http.Request) {

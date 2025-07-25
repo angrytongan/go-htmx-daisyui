@@ -57,7 +57,7 @@
     {{/* Maps. */}}
     <div class="grid grid-cols-3 gap-4">
       {{range $u := 3}}
-        <div hx-get="/widget/map?_={{$v}}{{$u}}"
+        <div hx-get="/widget/leaflet?_={{$v}}{{$u}}"
              hx-trigger="load"
              hx-target="this"
              hx-swap="outerHTML">{{template "widget-map-loader"}}</div>

@@ -41,7 +41,7 @@ func (app *Application) setRoutes(mux *chi.Mux) {
 		r.Get("/widget/table/{dataset}", app.widgetTable)
 		r.Get("/widget/timeline", app.widgetTimeline)
 		r.Get("/widget/graph-random", app.widgetGraphRandom)
-		r.Get("/widget/map", app.widgetMap)
+		r.Get("/widget/leaflet", app.widgetLeaflet)
 		r.Get("/widget/radial-graphs", app.widgetRadialGraphs)
 
 		// Things we change.
