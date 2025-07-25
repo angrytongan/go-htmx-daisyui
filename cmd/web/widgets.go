@@ -123,5 +123,18 @@ func (app *Application) widgetMapbox(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *Application) widgetRadialGraphs(w http.ResponseWriter, r *http.Request) {
-	app.render(w, r, "widget-radial-graphs", nil, http.StatusOK)
+	pageData := map[string]any{
+		"Progress": 50,
+	}
+
+	app.render(w, r, "widget-radial-graphs", pageData, http.StatusOK)
+}
+func (app *Application) widgetRadialGraphsUpdate(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+
+	pageData := map[string]any{
+		"Progress": r.FormValue("val"),
+	}
+
+	app.render(w, r, "widget-radial-graphs-update", pageData, http.StatusOK)
 }

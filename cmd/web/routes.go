@@ -32,6 +32,7 @@ func (app *Application) setRoutes(mux *chi.Mux) {
 	// Widgets.
 	mux.Get("/widget/server-time", app.widgetServerTime)
 	mux.Get("/widget/button-only", app.widgetButtonOnly)
+	mux.Post("/widget/radial-graphs-update", app.widgetRadialGraphsUpdate)
 
 	// Widgets that we delay.
 	mux.Group(func(r chi.Router) {
