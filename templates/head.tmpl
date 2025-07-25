@@ -2,14 +2,15 @@
 <!doctype html>
 <html>
   <head>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
     <link rel="stylesheet" href="/css/style.css" />
+
+    <!-- htmx -->
     <script type="text/javascript" src="/js/htmx.min.js"></script>
     <script type="text/javascript" src="/js/hyperscript.min.js"></script>
     <script type="text/javascript" src="/js/echarts.min.js"></script>
-
-    <script type="text/javascript" src="/js/htmx-ext-sse.min.js"></script>
     <script type="text/javascript" src="/js/htmx-ext-response-targets.min.js"></script>
-
     <meta name="htmx-config" content='{"historyCacheSize": 0,"refreshOnHistoryMiss": true}'>
 
     <!-- leaflet -->
@@ -19,9 +20,13 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
        crossorigin=""></script>
+
+    <!-- mapbox -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.13.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.13.0/mapbox-gl.js"></script>
   </head>
 
   <body hx-history="false"
-        hx-ext="sse,response-targets"
+        hx-ext="response-targets"
         class="min-h-screen flex">
 {{end}}

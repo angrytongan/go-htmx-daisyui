@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 )
 
 const (
@@ -13,16 +14,27 @@ const (
 )
 
 type Application struct {
-	tpl      *template.Template
-	darkMode bool
+	tpl               *template.Template
+	darkMode          bool
+	mapboxAccessToken string
+}
+
+func mustGetenv(key string) string {
+	value := os.Getenv(key)
+	if value == "" {
+		log.Fatalf("missing %s", key)
+	}
+
+	return value
 }
 
 func newApplication() *Application {
 	tpl := template.Must(template.ParseGlob("./templates/*.tmpl"))
 
 	return &Application{
-		tpl:      tpl,
-		darkMode: false,
+		tpl:               tpl,
+		darkMode:          false,
+		mapboxAccessToken: mustGetenv("MAPBOX_ACCESS_TOKEN"),
 	}
 }
 

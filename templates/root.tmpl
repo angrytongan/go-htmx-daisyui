@@ -18,13 +18,13 @@
 
   {{range $v := .NumChunks}}
     {{/* Graphs .*/}}
-    <div hx-get="/widget/graph-random"
+    <div hx-get="/widget/graph-random?_{{$v}}"
          hx-trigger="load"
          hx-target="this"
          hx-swap="outerHTML">{{template "widget-graph-random-loader"}}</div>
 
     {{/* Radial progress */}}
-    <div hx-get="/widget/radial-graphs"
+    <div hx-get="/widget/radial-graphs?_{{$v}}"
          hx-trigger="load"
          hx-target="this"
          hx-swap="outerHTML">{{template "widget-radial-graphs-loader"}}</div>
@@ -58,6 +58,13 @@
     <div class="grid grid-cols-3 gap-4">
       {{range $u := 3}}
         <div hx-get="/widget/leaflet?_={{$v}}{{$u}}"
+             hx-trigger="load"
+             hx-target="this"
+             hx-swap="outerHTML">{{template "widget-map-loader"}}</div>
+      {{end}}
+
+      {{range $u := 3}}
+        <div hx-get="/widget/mapbox?_={{$v}}{{$u}}"
              hx-trigger="load"
              hx-target="this"
              hx-swap="outerHTML">{{template "widget-map-loader"}}</div>

@@ -1,0 +1,12 @@
+{{block "widget-mapbox" .}}
+  <div id="map-{{.ID}}" class="w-auto h-56"></div>
+
+  <script>
+    mapboxgl.accessToken = '{{.MapboxAccessToken}}';
+    const map_{{.ID}} = new mapboxgl.Map({
+      container: 'map-{{.ID}}', // container ID
+      center: [153.06, -26.65], // starting position [lng, lat]. Note that lat must be set between -90 and 90
+      zoom: 10 // starting zoom
+    });
+  </script>
+{{end}}

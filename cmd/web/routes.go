@@ -43,6 +43,7 @@ func (app *Application) setRoutes(mux *chi.Mux) {
 		r.Get("/widget/graph-random", app.widgetGraphRandom)
 		r.Get("/widget/leaflet", app.widgetLeaflet)
 		r.Get("/widget/radial-graphs", app.widgetRadialGraphs)
+		r.Get("/widget/mapbox", app.widgetMapbox)
 
 		// Things we change.
 		r.Patch("/people/archive-toggle", app.peopleArchiveToggle)

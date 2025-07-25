@@ -113,6 +113,15 @@ func (app *Application) widgetLeaflet(w http.ResponseWriter, r *http.Request) {
 	app.render(w, r, "widget-leaflet", pageData, http.StatusOK)
 }
 
+func (app *Application) widgetMapbox(w http.ResponseWriter, r *http.Request) {
+	pageData := map[string]any{
+		"ID":                template.JS(strconv.FormatInt(time.Now().UnixMilli(), 10)),
+		"MapboxAccessToken": app.mapboxAccessToken,
+	}
+
+	app.render(w, r, "widget-mapbox", pageData, http.StatusOK)
+}
+
 func (app *Application) widgetRadialGraphs(w http.ResponseWriter, r *http.Request) {
 	app.render(w, r, "widget-radial-graphs", nil, http.StatusOK)
 }

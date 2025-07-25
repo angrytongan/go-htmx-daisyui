@@ -1,4 +1,7 @@
-.PHONY: help web
+.PHONY: help web lint lint-fix tailwind
+
+include .env
+export
 
 help: # me
 	@grep -e "^[a-z0-9_-]*:.* #" Makefile | sed -e 's/\(^[a-z0-9_-]*\):.* # \(.*\)/\1: \2/'
