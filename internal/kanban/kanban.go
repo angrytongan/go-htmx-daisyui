@@ -1,11 +1,15 @@
 package kanban
 
+import "sync"
+
 type WorkflowID int
 type ColumnID int
 type NoteID int
 
 type Workflow struct {
-	Columns []Column // a workflow is a number of columns
+	Columns    []Column   // a workflow is a number of columns
+	LastNoteID NoteID     // track the last note id, so we can create (unique) new ones
+	mu         sync.Mutex // we're accessing shared state...
 }
 
 type Column struct {

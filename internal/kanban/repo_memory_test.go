@@ -65,6 +65,7 @@ func TestDelColumn(t *testing.T) {
 	}
 }
 
+// TestOrderColumn tests column reordering.
 func TestOrderColumn(t *testing.T) {
 	k := kanban.NewMemory()
 
@@ -81,4 +82,58 @@ func TestOrderColumn(t *testing.T) {
 	if !slices.Equal(gotColumnIDs, wantColumnIDs) {
 		t.Fatalf("slices.Equal(): got %v, want %v", gotColumnIDs, wantColumnIDs)
 	}
+}
+
+// TestAddNote tests that notes added to columns are added correctly.
+func TestAddNote(t *testing.T) {
+	k := kanban.NewMemory()
+
+	adds := []struct {
+		ColumnID    kanban.ColumnID
+		Description string
+	}{
+		{1, "column 1, item 1"},
+		{2, "column 2, item 1"},
+		{3, "column 3, item 1"},
+		{1, "column 1, item 2"},
+		{2, "column 2, item 2"},
+		{3, "column 3, item 2"},
+	}
+
+	for _, v := range adds {
+		k.AddNote(v.ColumnID, v.Description)
+	}
+
+	// Check number of notes added to each column.
+	numNotes := []struct {
+		ColumnID kanban.ColumnID
+		NumItems int
+	}{{1, 2}, {2, 2}, {3, 2}}
+
+	for _, v := range numNotes {
+		idx := slices.IndexFunc(k.Columns, func(c kanban.Column) bool {
+			return v.ColumnID == c.ID
+		})
+
+		if idx == -1 {
+			t.Fatalf("slices.IndexFunc(%d): missing", v.ColumnID)
+		}
+
+		column := k.Columns[idx]
+		gotNumNotes := len(column.Notes)
+		wantNumNotes := v.NumItems
+
+		if gotNumNotes != wantNumNotes {
+			t.Fatalf(
+				"number of notes for column %d (%s): got %d, want %d",
+				v.ColumnID,
+				column.Description,
+				gotNumNotes,
+				wantNumNotes,
+			)
+		}
+	}
+
+	// Check content of notes in each column is correct.
+	// TODO
 }

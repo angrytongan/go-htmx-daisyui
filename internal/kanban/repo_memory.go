@@ -31,12 +31,16 @@ func NewMemory() *Workflow {
 	}
 
 	return &Workflow{
-		Columns: columns,
+		Columns:    columns,
+		LastNoteID: 0,
 	}
 }
 
 // AddColumn adds a new column to the board, in the last position.
-func (wf *Workflow) AddColumn(WIPLimit int, description string) error {
+func (wf *Workflow) AddColumn(wipLimit int, description string) error {
+	wf.mu.Lock()
+	defer wf.mu.Unlock()
+
 	max := slices.MaxFunc(wf.Columns, func(a, b Column) int {
 		if a.ID > b.ID {
 			return int(a.ID)
@@ -46,14 +50,19 @@ func (wf *Workflow) AddColumn(WIPLimit int, description string) error {
 
 	wf.Columns = append(wf.Columns, Column{
 		ID:          max.ID + 1,
-		WIPLimit:    WIPLimit,
+		WIPLimit:    wipLimit,
 		Description: description,
 	})
 
 	return nil
 }
 
+// DelColumn deletes an existing column from the board. Columns after
+// the deleted column are shuffled toward the first column.
 func (wf *Workflow) DelColumn(id ColumnID) error {
+	wf.mu.Lock()
+	defer wf.mu.Unlock()
+
 	idx := slices.IndexFunc(wf.Columns, func(c Column) bool {
 		return c.ID == id
 	})
@@ -65,7 +74,11 @@ func (wf *Workflow) DelColumn(id ColumnID) error {
 	return nil
 }
 
+// OrderColumn moves the column referenced with id to position.
 func (wf *Workflow) OrderColumn(id ColumnID, position int) error {
+	wf.mu.Lock()
+	defer wf.mu.Unlock()
+
 	idx := slices.IndexFunc(wf.Columns, func(c Column) bool {
 		return c.ID == id
 	})
@@ -74,6 +87,29 @@ func (wf *Workflow) OrderColumn(id ColumnID, position int) error {
 		c := wf.Columns[idx]
 		wf.Columns = slices.Delete(wf.Columns, idx, idx+1)
 		wf.Columns = slices.Insert(wf.Columns, position, c)
+	}
+
+	return nil
+}
+
+// AddNote adds a new note to a column.
+func (wf *Workflow) AddNote(idColumn ColumnID, description string) error {
+	wf.mu.Lock()
+	defer wf.mu.Unlock()
+
+	idx := slices.IndexFunc(wf.Columns, func(c Column) bool {
+		return c.ID == idColumn
+	})
+
+	if idx != -1 {
+		wf.LastNoteID++
+
+		note := Note{
+			ID:          wf.LastNoteID,
+			Description: description,
+		}
+
+		wf.Columns[idx].Notes = append(wf.Columns[idx].Notes, note)
 	}
 
 	return nil
