@@ -19,3 +19,6 @@ lint-fix: # Run the linter and fix things.
 
 tailwind:
 	npx @tailwindcss/cli --input ./assets/css/input.css --output ./assets/css/style.css --watch
+
+test:
+	go test -v ./internal/*

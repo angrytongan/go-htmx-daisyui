@@ -73,7 +73,9 @@ func (app *Application) render(w http.ResponseWriter,
 			{Label: "fragments", Href: "/template-fragments"},
 			{Label: "icons", Href: "/icons"},
 			{Label: "badges", Href: "/badges"},
+			{Label: "kanban", Href: "/kanban"},
 		}
+
 		pageData["DarkMode"] = app.darkMode
 	}
 
