@@ -1,9 +1,10 @@
 {{block "badges-page" .}}
   {{template "head" .}}
-  {{template "nav" .}}
+  {{template "layout-start" .}}
 
   {{template "badges" .}}
 
+  {{template "layout-end" .}}
   {{template "foot" .}}
 {{end}}
 
@@ -18,6 +19,16 @@
     {{template "icon-settings-theme"}}
     {{template "badge-offset"}}
   </button>
+
+  <div class="divider"></div>
+
+  <p>Using indicator</p>
+
+  <div class="indicator">
+    <span class="indicator-item badge badge-secondary">&plus;99</span>
+    <button class="btn btn-primary">press me</button>
+  </div>
+
 {{end}}
 
 {{define "badge"}}

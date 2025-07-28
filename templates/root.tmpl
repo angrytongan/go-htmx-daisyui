@@ -1,9 +1,10 @@
 {{block "root-page" .}}
   {{template "head" .}}
-  {{template "nav" .}}
+  {{template "layout-start" .}}
 
   {{template "root" .}}
 
+  {{template "layout-end" .}}
   {{template "foot" .}}
 {{end}}
 
