@@ -28,7 +28,6 @@ func (app *Application) setRoutes(mux *chi.Mux) {
 	mux.Get("/template-fragments", app.templateFragments)
 	mux.Get("/icons", app.icons)
 	mux.Get("/badges", app.badges)
-	mux.Get("/kanban", app.kanban)
 
 	// Widgets.
 	mux.Get("/widget/server-time", app.widgetServerTime)
@@ -51,4 +50,8 @@ func (app *Application) setRoutes(mux *chi.Mux) {
 		r.Patch("/people/archive-toggle", app.peopleArchiveToggle)
 		r.Post("/theme/toggle", app.themeToggle)
 	})
+
+	// Kanban things.
+	mux.Get("/kanban", app.kanban)
+	mux.Get("/kanban/process", app.kanbanProcess)
 }

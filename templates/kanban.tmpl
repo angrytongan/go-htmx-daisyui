@@ -8,5 +8,26 @@
 {{end}}
 
 {{block "kanban" .}}
-  <h2>kanban</h2>
+  <ul class="flex">
+    {{range .Columns}}
+      <li class="flex-1">
+        <h2>{{.ID}} - {{.Description}}</h2>
+        <ul class="list">
+          {{range .Notes}}
+            <li class="list-row">
+              {{.ID}} - {{.Description}}
+            </li>
+          {{end}}
+        </ul>
+      </li>
+    {{end}}
+  </ul>
+
+  <script>
+    htmx.onLoad(function(content) {
+      console.log("loaded");
+
+      // const sortables = content.querySelectorAll(".sortable")
+    })
+  </script>
 {{end}}

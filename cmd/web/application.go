@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"ghdui/internal/kanban"
 	"html/template"
 	"log"
 	"net/http"
@@ -17,6 +18,7 @@ type Application struct {
 	tpl               *template.Template
 	darkMode          bool
 	mapboxAccessToken string
+	workflow          *kanban.Workflow
 }
 
 func mustGetenv(key string) string {
@@ -30,11 +32,32 @@ func mustGetenv(key string) string {
 
 func newApplication() *Application {
 	tpl := template.Must(template.ParseGlob("./templates/*.tmpl"))
+	workflow := kanban.NewMemory()
+
+	// FIXME while we're testing, let's seed the kanban.
+	workflow.AddNote(1, "one")
+	workflow.AddNote(1, "two")
+	workflow.AddNote(1, "three")
+	workflow.AddNote(1, "four")
+	workflow.AddNote(1, "five")
+
+	workflow.AddNote(2, "six")
+	workflow.AddNote(2, "seven")
+	workflow.AddNote(2, "eight")
+	workflow.AddNote(2, "nine")
+	workflow.AddNote(2, "ten")
+
+	workflow.AddNote(3, "eleven")
+	workflow.AddNote(4, "twelve")
+	workflow.AddNote(3, "thirteen")
+	workflow.AddNote(4, "fourteen")
+	workflow.AddNote(3, "fifteen")
 
 	return &Application{
 		tpl:               tpl,
 		darkMode:          false,
 		mapboxAccessToken: mustGetenv("MAPBOX_ACCESS_TOKEN"),
+		workflow:          workflow,
 	}
 }
 
