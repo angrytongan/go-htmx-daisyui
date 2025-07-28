@@ -33,6 +33,7 @@ func (app *Application) setRoutes(mux *chi.Mux) {
 	mux.Get("/widget/server-time", app.widgetServerTime)
 	mux.Get("/widget/button-only", app.widgetButtonOnly)
 	mux.Post("/widget/radial-graphs-update", app.widgetRadialGraphsUpdate)
+	mux.Post("/theme/toggle", app.themeToggle)
 
 	// Widgets that we delay.
 	mux.Group(func(r chi.Router) {
@@ -48,6 +49,5 @@ func (app *Application) setRoutes(mux *chi.Mux) {
 
 		// Things we change.
 		r.Patch("/people/archive-toggle", app.peopleArchiveToggle)
-		r.Post("/theme/toggle", app.themeToggle)
 	})
 }
