@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"ghdui/internal/nav"
 	"html/template"
 	"log"
 	"net/http"
@@ -65,15 +66,8 @@ func (app *Application) render(w http.ResponseWriter,
 			pageData = map[string]any{}
 		}
 
-		pageData["NavLinks"] = []struct {
-			Label string
-			Href  string
-		}{
-			{Label: "root", Href: "/"},
-			{Label: "fragments", Href: "/template-fragments"},
-			{Label: "icons", Href: "/icons"},
-			{Label: "badges", Href: "/badges"},
-		}
+		// Setup links, set active page.
+		pageData["Nav"] = nav.MakeLinks(r.URL.String())
 		pageData["DarkMode"] = app.darkMode
 	}
 
