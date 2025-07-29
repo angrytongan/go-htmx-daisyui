@@ -1,9 +1,13 @@
 package main
 
-import "net/http"
+import (
+	"ghdui/internal/nav"
+	"net/http"
+)
 
 func (app *Application) root(w http.ResponseWriter, r *http.Request) {
 	pageData := map[string]any{
+		"Nav":       nav.MakeLinks(r.URL.String()),
 		"NumChunks": 1,
 	}
 

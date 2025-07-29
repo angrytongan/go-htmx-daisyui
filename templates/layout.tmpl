@@ -4,6 +4,9 @@
       {{range .Nav}}
         <li><a href="{{.Href}}"
                {{if .Active}}class="menu-active"{{end}}
+               hx-get="{{.Href}}"
+               hx-target="closest div"
+               hx-swap="outerHTML"
                >{{.Label}}</a></li>
       {{end}}
     </ul>

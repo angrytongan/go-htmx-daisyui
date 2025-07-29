@@ -1,14 +1,12 @@
 {{block "root-page" .}}
   {{template "head" .}}
-  {{template "layout-start" .}}
-
   {{template "root" .}}
-
-  {{template "layout-end" .}}
   {{template "foot" .}}
 {{end}}
 
 {{block "root" .}}
+  {{template "layout-start" .}}
+
   {{/* server time */}}
   <div hx-get="/widget/server-time"
        hx-trigger="load"
@@ -90,4 +88,6 @@
 
     <div class="divider"></div>
   {{end}}
+
+  {{template "layout-end" .}}
 {{end}}
