@@ -1,14 +1,12 @@
 {{block "badges-page" .}}
   {{template "head" .}}
-  {{template "layout-start" .}}
-
   {{template "badges" .}}
-
-  {{template "layout-end" .}}
   {{template "foot" .}}
 {{end}}
 
 {{block "badges" .}}
+  {{template "layout-start" .}}
+
   <button class="btn btn-primary">button</button>
 
   <button class="btn btn-primary">button {{template "badge"}}</button>
@@ -29,6 +27,7 @@
     <button class="btn btn-primary">press me</button>
   </div>
 
+  {{template "layout-end" .}}
 {{end}}
 
 {{define "badge"}}

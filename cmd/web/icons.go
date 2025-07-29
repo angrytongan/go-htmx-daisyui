@@ -1,7 +1,14 @@
 package main
 
-import "net/http"
+import (
+	"ghdui/internal/nav"
+	"net/http"
+)
 
 func (app *Application) icons(w http.ResponseWriter, r *http.Request) {
-	app.render(w, r, "icons", nil, http.StatusOK)
+	pageData := map[string]any{
+		"Nav": nav.MakeLinks(r.URL.String()),
+	}
+
+	app.render(w, r, "icons", pageData, http.StatusOK)
 }
