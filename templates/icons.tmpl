@@ -1,11 +1,10 @@
 {{block "icons-page" .}}
   {{template "head" .}}
-  {{template "icons" .}}
+  {{template "layout" .}}
   {{template "foot" .}}
 {{end}}
 
 {{block "icons" .}}
-  {{template "layout-start" .}}
 
   <p>As downloaded from https://fonts.google.com/icons</p>
   <div>
@@ -19,7 +18,6 @@
     {{template "icon-settings-theme"}}
   </div>
 
-  {{template "layout-end" .}}
 {{end}}
 
 {{define "icon-home"}}
