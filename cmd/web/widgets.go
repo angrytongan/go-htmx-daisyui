@@ -130,7 +130,7 @@ func (app *Application) widgetRadialGraphs(w http.ResponseWriter, r *http.Reques
 	app.render(w, r, "widget-radial-graphs", pageData, http.StatusOK)
 }
 func (app *Application) widgetRadialGraphsUpdate(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
+	_ = r.ParseForm()
 
 	pageData := map[string]any{
 		"Progress": r.FormValue("val"),

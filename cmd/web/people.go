@@ -6,7 +6,7 @@ import (
 )
 
 func (app *Application) peopleArchiveToggle(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
+	_ = r.ParseForm()
 
 	name := r.FormValue("name")
 	archived := people.ArchiveToggle(name)

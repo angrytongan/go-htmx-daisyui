@@ -9,10 +9,6 @@ import (
 	"os"
 )
 
-const (
-	initialColour = "red"
-)
-
 type Application struct {
 	tpl               *template.Template
 	darkMode          bool
