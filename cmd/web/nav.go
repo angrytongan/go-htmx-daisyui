@@ -12,8 +12,9 @@ func (app *Application) nav(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("href", href)
 
 	pageData := map[string]any{
-		"Nav":  nav.MakeLinks(href),
-		"Href": href,
+		"Nav":      nav.MakeLinks(href),
+		"Href":     href,
+		"DarkMode": app.darkMode,
 	}
 
 	fmt.Println("loading", href, pageData["Nav"])
