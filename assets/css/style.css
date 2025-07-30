@@ -1863,6 +1863,9 @@
   .mt-1 {
     margin-top: calc(var(--spacing) * 1);
   }
+  .ml-2 {
+    margin-left: calc(var(--spacing) * 2);
+  }
   .status {
     display: inline-block;
     aspect-ratio: 1 / 1;
@@ -2129,6 +2132,12 @@
   }
   .py-1 {
     padding-block: calc(var(--spacing) * 1);
+  }
+  .pl-2 {
+    padding-left: calc(var(--spacing) * 2);
+  }
+  .text-center {
+    text-align: center;
   }
   .text-base-content {
     color: var(--color-base-content);
