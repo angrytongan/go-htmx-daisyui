@@ -1,7 +1,6 @@
 package main
 
 import (
-	"ghdui/internal/nav"
 	"ghdui/internal/people"
 	"net/http"
 )
@@ -14,7 +13,6 @@ type People struct {
 
 func (app *Application) templateFragments(w http.ResponseWriter, r *http.Request) {
 	pageData := map[string]any{
-		"Nav":    nav.MakeLinks(r.URL.String()),
 		"Value":  0,
 		"People": people.All(),
 	}

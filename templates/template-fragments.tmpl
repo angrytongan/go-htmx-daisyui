@@ -1,12 +1,10 @@
 {{block "template-fragments-page" .}}
   {{template "head" .}}
-  {{template "template-fragments" .}}
+  {{template "layout" .}}
   {{template "foot" .}}
 {{end}}
 
 {{block "template-fragments" .}}
-  {{template "layout-start" .}}
-
   <p>template fragments</p>
 
   {{block "button-only" .}}
@@ -60,6 +58,4 @@
     {{end}}
     </tbody>
   </table>
-
-  {{template "layout-end" .}}
 {{end}}

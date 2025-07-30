@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"ghdui/internal/nav"
 	"html/template"
 	"log"
 	"net/http"
@@ -59,16 +58,20 @@ func (app *Application) render(w http.ResponseWriter,
 
 	// Render a full page if we didn't get a htmx request.
 	if r.Header.Get("Hx-Request") != "true" {
-		block += "-page"
-
 		// Setup non-specific page template data here.
 		if pageData == nil {
 			pageData = map[string]any{}
 		}
 
 		// Setup links, set active page.
-		pageData["Nav"] = nav.MakeLinks(r.URL.String())
+		pageData["Page"] = block
+		if block == "/" {
+			pageData["Page"] = ""
+		}
+
 		pageData["DarkMode"] = app.darkMode
+
+		block += "-page"
 	}
 
 	err := app.tpl.ExecuteTemplate(&b, block, pageData)

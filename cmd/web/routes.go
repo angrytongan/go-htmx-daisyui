@@ -29,6 +29,10 @@ func (app *Application) setRoutes(mux *chi.Mux) {
 	mux.Get("/icons", app.icons)
 	mux.Get("/badges", app.badges)
 
+	// Navigation.
+	mux.Get("/nav/{page}", app.nav)
+	mux.Get("/nav/", app.nav)
+
 	// Widgets.
 	mux.Get("/widget/server-time", app.widgetServerTime)
 	mux.Get("/widget/button-only", app.widgetButtonOnly)

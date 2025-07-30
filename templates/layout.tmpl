@@ -1,20 +1,31 @@
-{{block "layout-start" .}}
+{{block "layout" .}}
   <div class="flex flex-row">
-    <ul class="flex-none menu bg-base-200">
-      {{range .Nav}}
-        <li><a href="{{.Href}}"
-               {{if .Active}}class="menu-active"{{end}}
-               hx-get="{{.Href}}"
-               hx-target="closest div"
-               hx-swap="outerHTML"
-               >{{.Label}}</a></li>
-      {{end}}
-    </ul>
+    <div hx-get="/nav/{{.Page}}"
+         hx-trigger="load"
+         hx-target="this"
+         hx-swap="outerHTML"></div>
 
-    <main id="main" class="grow m-2">
+    <main id="main" class="grow m-2"></main>
+  </div>
 {{end}}
 
-{{block "layout-end" .}}
-    </main>
-  </div>
+{{block "nav" .}}
+  <ul class="flex-none menu bg-base-200">
+    {{range .Nav}}
+      <li><a href="{{.Href}}" {{if .Active}}class="menu-active"{{end}}
+             hx-get="/nav{{.Href}}"
+             hx-target="closest ul"
+             hx-swap="outerHTML"
+             >{{.Label}}</a></li>
+    {{end}}
+  </ul>
+
+  <main id="main" class="grow m-2" hx-swap-oob="true">
+    <div hx-get="{{.Href}}"
+         hx-trigger="load"
+         hx-target="this"
+         hx-swap="outerHTML"
+         hx-push-url="true"
+         >Loading</div>
+  </main>
 {{end}}
