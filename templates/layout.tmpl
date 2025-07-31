@@ -1,6 +1,6 @@
 {{block "layout" .}}
   <div class="flex flex-row">
-    <div hx-get="/nav/{{.Page}}"
+    <div hx-get="/nav/{{.Page}}?{{.QueryParams}}"
          hx-trigger="load"
          hx-target="this"
          hx-swap="outerHTML"></div>
@@ -22,7 +22,7 @@
   </ul>
 
   <main id="main" class="grow m-2" hx-swap-oob="true">
-    <div hx-get="{{.Href}}"
+    <div hx-get="{{.Href}}?{{.QueryParams}}"
          hx-trigger="load"
          hx-target="this"
          hx-swap="outerHTML"

@@ -138,3 +138,31 @@ func (app *Application) widgetRadialGraphsUpdate(w http.ResponseWriter, r *http.
 
 	app.render(w, r, "widget-radial-graphs-update", pageData, http.StatusOK)
 }
+
+func (app *Application) widgetTabs(w http.ResponseWriter, r *http.Request) {
+	name := r.PathValue("name")
+	params := r.URL.Query()
+	tabs := []string{"one", "two", "three", "four", "five"}
+
+	// If we were called with no argument, check to see if we have a query
+	// parameter. Use that as the tab if we do.
+	if name == "" {
+		lastTab := params.Get("tab")
+		if lastTab != "" {
+			name = lastTab
+		}
+	}
+
+	// If we still don't have a name, use the first tab.
+	if name == "" {
+		name = tabs[0]
+	}
+
+	pageData := map[string]any{
+		"Tabs":      tabs,
+		"ChosenTab": name,
+		"Content":   "this is content for " + name,
+	}
+
+	app.render(w, r, "widget-tabs", pageData, http.StatusOK)
+}

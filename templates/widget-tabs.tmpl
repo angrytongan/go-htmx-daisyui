@@ -1,0 +1,24 @@
+{{block "widget-tabs" .}}
+  <div class="tab-thing">
+    <div role="tablist" class="tabs-border">
+      {{range .Tabs}}
+        <a role="tab"
+           class="tab{{if eq . $.ChosenTab}} tab-active{{end}}"
+           hx-get="/widget/tabs/{{.}}"
+           hx-trigger="click"
+           hx-target="closest .tab-thing"
+           hx-swap="outerHTML"
+           hx-push-url="/?tab={{.}}"
+           >{{.}}</a>
+      {{end}}
+    </div>
+
+    <div class="my-2">
+      {{.Content}}
+    </div>
+  </div>
+{{end}}
+
+{{block "widget-tabs-loader" .}}
+  <div class="skeleton w-64 h-8"></div>
+{{end}}
