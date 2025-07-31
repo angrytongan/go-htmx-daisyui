@@ -1,23 +1,20 @@
 package main
 
 import (
-	"fmt"
 	"ghdui/internal/nav"
 	"net/http"
 )
 
 func (app *Application) nav(w http.ResponseWriter, r *http.Request) {
 	href := "/" + r.PathValue("page")
-
-	fmt.Println("href", href)
+	queryParams := r.URL.RawQuery
 
 	pageData := map[string]any{
-		"Nav":      nav.MakeLinks(href),
-		"Href":     href,
-		"DarkMode": app.darkMode,
+		"Nav":         nav.MakeLinks(href),
+		"Href":        href,
+		"DarkMode":    app.darkMode,
+		"QueryParams": queryParams,
 	}
-
-	fmt.Println("loading", href, pageData["Nav"])
 
 	app.render(w, r, "nav", pageData, http.StatusOK)
 }

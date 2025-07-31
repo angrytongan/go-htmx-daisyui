@@ -54,4 +54,9 @@ func (app *Application) setRoutes(mux *chi.Mux) {
 		// Things we change.
 		r.Patch("/people/archive-toggle", app.peopleArchiveToggle)
 	})
+
+	// Tabs.
+	mux.Get("/widget/tabs/{name}", app.widgetTabs)
+	mux.Get("/widget/tabs", app.widgetTabs)
+
 }

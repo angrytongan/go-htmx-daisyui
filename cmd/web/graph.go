@@ -13,7 +13,7 @@ import (
 
 const (
 	// numGraphs is the number of graphs we render.
-	numGraphs = 3
+	numGraphs = 2
 )
 
 type GraphThing struct {

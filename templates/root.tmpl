@@ -12,6 +12,12 @@
        hx-target="this"
        hx-swap="outerHTML">{{template "widget-server-time-loader"}}</div>
 
+  {{/* tabs */}}
+  <div hx-get="/widget/tabs?{{.QueryParams}}"
+       hx-trigger="load"
+       hx-target="this"
+       hx-swap="outerHTML">{{template "widget-tabs-loader"}}</div>
+
   <div class="divider"></div>
 
   {{range $v := .NumChunks}}

@@ -67,6 +67,9 @@ func (app *Application) render(w http.ResponseWriter,
 
 		pageData["DarkMode"] = app.darkMode
 
+		// carry query parameters through
+		pageData["QueryParams"] = r.URL.RawQuery
+
 		block += "-page"
 	}
 
