@@ -20,8 +20,10 @@ func run() error {
 	assetFileServer := http.FileServer(http.Dir("./assets"))
 
 	mux.Use(middleware.Logger)
+	mux.Use(middleware.Compress(5, "text/html", "text/css"))
 	mux.Handle("/css/*", assetFileServer)
 	mux.Handle("/js/*", assetFileServer)
+	mux.Handle("/img/*", assetFileServer)
 	app.setRoutes(mux)
 
 	server := newServer(defaultPort, mux)
