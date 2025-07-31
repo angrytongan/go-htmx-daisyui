@@ -82,6 +82,7 @@ func (app *Application) render(w http.ResponseWriter,
 		return
 	}
 
+	// NOTE hardcoded content type here
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	w.WriteHeader(statusCode)
 
